@@ -1,6 +1,7 @@
 {
   "name": "TexLive 2020",
-  "dockerFile": "Dockerfile",
+  "image": "range3/texlive-ja:latest",
+  // "dockerFile": "Dockerfile",
 
   "settings": {
     "terminal.integrated.shell.linux": "/bin/bash"
