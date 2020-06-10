@@ -47,7 +47,15 @@ RUN /bin/bash -c set -o pipefail \
       collection-langjapanese \
       collection-latexextra \
       latexmk \
+      latexindent \
     && rm -fr /tmp/install-tl-unx \
+    # Install perl modules for latexindent
+    && cpanm \
+      Log::Log4perl \
+      Log::Dispatch::File \
+      YAML::Tiny \
+      File::HomeDir \
+      Unicode::GCString \
     # Clean up
     && apt-get autoremove -y \
     && apt-get clean -y \
