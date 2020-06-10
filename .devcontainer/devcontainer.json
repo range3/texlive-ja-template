@@ -1,0 +1,14 @@
+{
+  "name": "TexLive 2020",
+  "dockerFile": "Dockerfile",
+
+  "settings": {
+    "terminal.integrated.shell.linux": "/bin/bash"
+  },
+  
+  "extensions": [
+    "james-yu.latex-workshop",
+  ],
+
+  "remoteUser": "texlive"
+}
