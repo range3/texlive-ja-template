@@ -39,6 +39,7 @@ RUN /bin/bash -c set -o pipefail \
       > /tmp/install-tl-unx/texlive.profile \
     && /tmp/install-tl-unx/install-tl \
       --profile=/tmp/install-tl-unx/texlive.profile \
+    && /usr/local/texlive/2020/bin/x86_64-linux/tlmgr path add \
     && tlmgr install \
       collection-fontsrecommended \
       collection-langcjk \
@@ -46,7 +47,6 @@ RUN /bin/bash -c set -o pipefail \
       collection-latexextra \
       latexmk \
       latexindent \
-    && tlmgr path add \
     && rm -fr /tmp/install-tl-unx \
     # Install perl modules for latexindent
     && cpanm \
