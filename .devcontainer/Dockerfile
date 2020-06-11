@@ -5,8 +5,6 @@ ARG USER_UID=1000
 ARG USER_GID=$USER_UID
 ARG USER_GECOS=TeXLive
 
-ENV PATH /usr/local/texlive/2020/bin/x86_64-linux:$PATH
-
 RUN /bin/bash -c set -o pipefail \
     # Create user
     && groupadd --gid $USER_GID $USERNAME \
@@ -48,6 +46,7 @@ RUN /bin/bash -c set -o pipefail \
       collection-latexextra \
       latexmk \
       latexindent \
+    && tlmgr path add \
     && rm -fr /tmp/install-tl-unx \
     # Install perl modules for latexindent
     && cpanm \
