@@ -5,9 +5,8 @@ ARG USER_UID=1000
 ARG USER_GID=$USER_UID
 ARG USER_GECOS=TeXLive
 
-RUN /bin/bash -c set -o pipefail \
-    # Create user
-    && groupadd --gid $USER_GID $USERNAME \
+# Create user
+RUN groupadd --gid $USER_GID $USERNAME \
     && useradd \
       -s /bin/bash \
       --uid $USER_UID \
