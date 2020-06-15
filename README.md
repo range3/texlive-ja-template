@@ -37,6 +37,14 @@ PS C:\Users\username> wsl -l -v
 - Extensions
   - Remote Development (ms-vscode-remote.vscode-remote-extensionpack)
 
+### その他
+- ~/.gitconfig
+  - ホスト側に設定があれば、Remote Developmentがコンテナ内に転送してくれる
+- ssh-agent
+  - ホスト側に設定があれば、Remote Developmentがコンテナ内に転送してくれる
+  - 現在バグでWSL2内のssh-agentは転送できない
+    - https://github.com/microsoft/vscode-remote-release/issues/2925
+
 ## Usage
 ### templateを開く
 主な方法 - 2パターン
