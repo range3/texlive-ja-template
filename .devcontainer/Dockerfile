@@ -30,7 +30,7 @@ RUN /bin/bash -c set -o pipefail \
     && locale-gen \
     # Install TexLive
     && mkdir /tmp/install-tl-unx \
-    && curl -L ftp://tug.org/historic/systems/texlive/2020/install-tl-unx.tar.gz \
+    && curl -Ls http://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz \
     | tar -xz -C /tmp/install-tl-unx --strip-components=1 \
     && printf "%s\n" \
       "selected_scheme scheme-basic" \
