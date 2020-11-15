@@ -11,22 +11,23 @@
 ###  WSL2
 - https://docs.microsoft.com/ja-jp/windows/wsl/install-win10
 
-Windows PowerShellを管理者として実行
-
+1. Win10のWSL2実行に必要なOS機能を有効にする。Windows PowerShellを管理者モードで起動し、以下のコマンドを実行
 ```
 dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart
 dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart
 wsl --set-default-version 2
 ```
-- Microsoft Storeで好きなLinuxディストリビューションをインストール
-- 1度ディストリビューションを起動して初期設定
+2. OS再起動
+3. Microsoft Storeで好きなLinuxディストリビューションをインストール
+4. ディストリビューションを起動して初期設定
 
-確認
+#### 確認
 ```
 PS C:\Users\username> wsl -l -v
   NAME                   STATE           VERSION
 * Debian                 Running         2
 ```
+
 ### Docker Desktop for Windows
 - WSL2を有効化
 - Settings > Resources > WSL Integration
@@ -41,17 +42,13 @@ PS C:\Users\username> wsl -l -v
 - ~/.gitconfig
   - ホスト側に設定があれば、Remote Developmentがコンテナ内に転送してくれる
 - ssh-agent
-  - ホスト側に設定があれば、Remote Developmentがコンテナ内に転送してくれる
-  - 現在バグでWSL2内のssh-agentは転送できない
-    - https://github.com/microsoft/vscode-remote-release/issues/2925
+  - ホスト側で環境変数SSH_AUTH_SOCKを適切に設定すればRemote Developmentがコンテナに転送してくれる
+  - sshkeychainを使うのがおすすめ
 
 ## Usage
 ### templateを開く
-主な方法 - 2パターン
 - 予めローカルに`git clone`しておいて、`F1` or `ctrl + shift + p`からコマンドパレットを開き、**Remote - Containers: Open Folder in Container**
   - local directoryがdocker containerの`/workspaces/project-name`にbind mountされる
-- `F1` or `ctrl + shift + p`からコマンドパレットを開き、直接git repositoryを**Remote - Containers: Open Repository in Container**
-  - Dockerのnamed volumeが新たに作成されて、workspaceはその中にcloneされる。その後、containerにvolume mount
 
 ### TeXのbuild
 - workspaceのroot directoryにある.latexmkrcを編集する
@@ -65,13 +62,39 @@ PS C:\Users\username> wsl -l -v
   - ※LaTeX Workshop経由で`latexindent`(perlスクリプト)が呼び出される
 
 ### TeXLiveのパッケージ追加インストール
-```
+```bash
+$ sudo tlmgr update --self
 $ sudo tlmgr install package-name
+$ sudo tlmgr path add
 ```
 
 ### コマンドラインでの利用
-```
+```bash
 $ docker run -it --rm -v $PWD:/workdir -u texlive range3/texlive-ja:latest /bin/bash
 $ cd /workdir
 $ latexmk
+```
+
+### Dockerfileをカスタマイズする
+- .devcontainer/Dockerfile
+```docker
+FROM range3/texlive-ja:latext
+RUN \
+  # TeXLive packages
+  && tlmgr update --self \
+  && tlmgr install \
+    multibib \
+    natbib \
+    pdfcrop \
+```
+- .devcontainer/devcontainer.json
+```json5
+{
+  // ... 略 ...
+  
+  // "image": "range3/texlive-ja:latest",
+  "dockerFile": "Dockerfile",
+
+  // ... 略 ...
+}
 ```
