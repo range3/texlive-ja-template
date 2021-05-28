@@ -6,7 +6,7 @@
 > Win10 WSL2上のDockerコンテナ内にTeXLive環境を構築して、VSCodeのRemote - Containers拡張機能でアクセス、LaTeX Workshop拡張機能でTex編集&ビルド&プレビュー
 
 ## Install
-### Windows 10 version 2004 (Windows 10 May 2020 Update)
+### Windows 10 version 2004 (Windows 10 May 2020 Update) 以降
 - https://www.microsoft.com/ja-jp/software-download/windows10
 ###  WSL2
 - https://docs.microsoft.com/ja-jp/windows/wsl/install-win10
@@ -35,9 +35,10 @@ PS C:\Users\username> wsl -l -v
   - wsl2のdistro内でdockerコマンドが利用可能になる
 
 ### VSCode
-- Extensions
+- Extensions (ホストOS側)
   - Remote Development (ms-vscode-remote.vscode-remote-extensionpack)
 
+Latex WorkshopはContainer内に自動でインストールされます
 ### その他
 - ~/.gitconfig
   - ホスト側に設定があれば、Remote Developmentがコンテナ内に転送してくれる
@@ -78,14 +79,14 @@ $ latexmk
 ### Dockerfileをカスタマイズする
 - .devcontainer/Dockerfile
 ```docker
-FROM range3/texlive-ja:latext
+FROM range3/texlive-ja:latest
 RUN \
   # TeXLive packages
   && tlmgr update --self \
   && tlmgr install \
     multibib \
     natbib \
-    pdfcrop \
+    pdfcrop
 ```
 - .devcontainer/devcontainer.json
 ```json5
