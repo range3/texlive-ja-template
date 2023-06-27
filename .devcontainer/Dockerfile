@@ -60,12 +60,13 @@ RUN \
     texlive-lang-japanese \
     texlive-latex-recommended \
     texlive-latex-extra \
+    texlive-fonts-recommended \
+    texlive-fonts-extra \
     texlive-luatex \
     texlive-xetex \
     texlive-extra-utils \
     latex-cjk-common \
     fonts-lmodern \
-    texlive-fonts-extra \
     ghostscript \
     xzdec \
     perl \
