@@ -10,6 +10,10 @@ See [Documentation (Japanese)](./doc/how-to-use.ja.md)
 # Auto build LaTeX and release PDF
 Push git tags starting with "v" to automatically build main.tex and release PDF of the result
 
+- To allow github workflow to do automatic releases, the following settings are required
+  - Settings > Actions > General > Workflow permissions 
+    - set "Read and write permissions"
+
 # Pre-build Docker image
 - is available on Docker Hub 
   - https://hub.docker.com/repository/docker/range3/texlive-ja/general
