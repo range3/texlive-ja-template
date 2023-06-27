@@ -57,3 +57,7 @@ code .
 ```bash
 $ tlmgr --usermode install package-name
 ```
+
+## SyncTeX
+- pdfプレビュー上で`ctrl + click`
+- texファイル上で`ctrl + alt + j`

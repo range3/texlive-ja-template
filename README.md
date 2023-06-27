@@ -4,6 +4,9 @@
 # How to Use
 See [Documentation (Japanese)](./doc/how-to-use.ja.md)
 
+# Example of building IPSJ tech-jsample.tex
+- http://www.ipsj.or.jp/journal/submit/style.html
+
 # Pre-build Docker image
 - is available on Docker Hub 
   - https://hub.docker.com/repository/docker/range3/texlive-ja/general
