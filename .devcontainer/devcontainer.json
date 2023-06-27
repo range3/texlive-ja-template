@@ -1,15 +1,26 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the
+// README at: https://github.com/devcontainers/templates/tree/main/src/debian
 {
-  "name": "TexLive 2020",
-  "image": "range3/texlive-ja:latest",
-  // "dockerFile": "Dockerfile",
-
-  "settings": {
-    "terminal.integrated.shell.linux": "/bin/bash"
+  "name": "TexLive 2022 on Debian 12 (bookworm)",
+  // "image": "range3/texlive-ja:latest",
+  "dockerFile": "Dockerfile",
+  "remoteEnv": {
+    "EDITOR": "${localEnv:EDITOR}"
   },
-  
-  "extensions": [
-    "james-yu.latex-workshop",
-  ],
-
-  "remoteUser": "texlive"
+  "customizations": {
+    "vscode": {
+      "settings": {
+        "terminal.integrated.defaultProfile.linux": "bash-login",
+        "terminal.integrated.profiles.linux.bash-login": {
+          "path": "bash",
+          "args": [
+            "-l"
+          ]
+        }
+      },
+      "extensions": [
+        "James-Yu.latex-workshop"
+      ]
+    }
+  }
 }
