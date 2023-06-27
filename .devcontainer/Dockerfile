@@ -92,3 +92,5 @@ RUN \
   && tlmgr --usermode option \
     repository \
     https://ftp.math.utah.edu/pub/tex/historic/systems/texlive/2022/tlnet-final/
+
+USER root

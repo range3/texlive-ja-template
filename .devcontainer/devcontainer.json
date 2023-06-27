@@ -2,8 +2,8 @@
 // README at: https://github.com/devcontainers/templates/tree/main/src/debian
 {
   "name": "TexLive 2022 on Debian 12 (bookworm)",
-  // "image": "range3/texlive-ja:latest",
-  "dockerFile": "Dockerfile",
+  "image": "range3/texlive-ja:latest",
+  // "dockerFile": "Dockerfile",
   "remoteEnv": {
     "EDITOR": "${localEnv:EDITOR}"
   },
@@ -22,5 +22,6 @@
         "James-Yu.latex-workshop"
       ]
     }
-  }
+  },
+  "remoteUser": "texlive"
 }
