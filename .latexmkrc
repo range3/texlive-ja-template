@@ -1,4 +1,8 @@
 #!/usr/bin/env perl
+ensure_path( 'TEXINPUTS', './ipsj_v4/UTF8' );
+ensure_path( 'BSTINPUTS', './ipsj_v4/UTF8' );
+@default_files=('main');
+
 
 $max_repeat                    = 5;
 $pdf_mode                      = 3;
