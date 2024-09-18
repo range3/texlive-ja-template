@@ -14,25 +14,15 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           submodules: recursive
-      - name: Build LaTeX files by latexmk
+
+      - name: Build LaTeX and Set Output File Name
         uses: ./.github/actions/latexmk
-      - name: Create a Release
-        id: create-release
-        uses: actions/create-release@v1
+        with:
+          latex_file_name: ${{ github.event.inputs.latex_file_name || 'main.tex' }}
+
+      - name: Create and Upload a Release Asset
+        uses: softprops/action-gh-release@v2.0.8
+        with:
+          files: ./${{ env.OUTPUT_PDF }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          tag_name: ${{ github.ref }}
-          release_name: Release ${{ github.ref }}
-          draft: false
-          prerelease: false
-      - name: Upload a Release Asset
-        id: upload-release-asset 
-        uses: actions/upload-release-asset@v1.0.2
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.create-release.outputs.upload_url }}
-          asset_path: ./main.pdf
-          asset_name: main.pdf
-          asset_content_type: application/pdf

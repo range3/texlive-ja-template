@@ -1,0 +1,11 @@
+name: "Build LaTeX using latexmk"
+description: "Build LaTeX files and set output file name with version or branch info"
+author: "range3"
+runs:
+  using: "docker"
+  image: "Dockerfile"
+inputs:
+  latex_file_name:
+    description: "LaTeX file to build (default: main.tex)"
+    required: false
+    default: "main.tex"
