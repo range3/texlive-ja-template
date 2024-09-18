@@ -18,11 +18,11 @@ jobs:
       - name: Build LaTeX and Set Output File Name
         uses: ./.github/actions/latexmk
         with:
-          latex_file_name: ${{ github.event.inputs.latex_file_name || 'main.tex' }}
+          latex_file_name: 'main.tex'
 
       - name: Create and Upload a Release Asset
         uses: softprops/action-gh-release@v2.0.8
         with:
-          files: ./${{ env.OUTPUT_PDF }}
+          files: ./${{ env.LATEXMK_OUTPUT_PDF }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
