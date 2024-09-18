@@ -66,6 +66,8 @@ RUN \
     texlive-luatex \
     texlive-xetex \
     texlive-extra-utils \
+    texlive-publishers \
+    texlive-science \
     latex-cjk-common \
     fonts-lmodern \
     ghostscript \
