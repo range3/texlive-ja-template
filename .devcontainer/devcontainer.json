@@ -1,7 +1,7 @@
 // For format details, see https://aka.ms/devcontainer.json. For config options, see the
 // README at: https://github.com/devcontainers/templates/tree/main/src/debian
 {
-  "name": "TexLive 2022 on Debian 12 (bookworm)",
+  "name": "TexLive 2023 on Debian 13 (trixie)",
   "image": "range3/texlive-ja:latest",
   // "dockerFile": "Dockerfile",
   "remoteEnv": {

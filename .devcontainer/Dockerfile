@@ -1,4 +1,4 @@
-FROM buildpack-deps:bookworm-curl
+FROM buildpack-deps:trixie-curl
 
 ARG USERNAME=texlive
 ARG USER_UID=1000
@@ -56,6 +56,7 @@ ENV LC_ALL ja_JP.UTF-8
 RUN \
   export DEBIAN_FRONTEND=noninteractive \
   && apt-get update \
+  && apt-get upgrade -y \
   && apt-get install -y --no-install-recommends \
     texlive-lang-japanese \
     texlive-latex-recommended \
@@ -72,13 +73,11 @@ RUN \
     perl \
     cpanminus \
     latexmk \
+    xz-utils \
   # Install perl modules for latexindent
   && cpanm \
     YAML::Tiny \
     File::HomeDir \
-    # Log::Log4perl \
-    # Log::Dispatch::File \
-    # Unicode::GCString \
   # Clean up
   && apt-get autoremove -y \
   && apt-get clean -y \
@@ -87,10 +86,6 @@ RUN \
 USER ${USERNAME}
 RUN \
   # setup tlmgr for usermode
-  tlmgr init-usertree \
-  # Match repository to local texlive version
-  && tlmgr --usermode option \
-    repository \
-    https://ftp.math.utah.edu/pub/tex/historic/systems/texlive/2022/tlnet-final/
+  tlmgr init-usertree 
 
 USER root
