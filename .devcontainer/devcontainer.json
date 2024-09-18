@@ -2,7 +2,7 @@
 // README at: https://github.com/devcontainers/templates/tree/main/src/debian
 {
   "name": "TexLive 2023 on Debian 13 (trixie)",
-  "image": "range3/texlive-ja:latest",
+  "image": "ghcr.io/range3/texlive-ja:latest",
   // "dockerFile": "Dockerfile",
   "remoteEnv": {
     "EDITOR": "${localEnv:EDITOR}"

@@ -20,7 +20,7 @@ echo "LATEXMK_LATEX_FILE_NAME=${LATEX_FILE_NAME}" >> $GITHUB_ENV
 echo "LATEXMK_OUTPUT_PDF=${OUTPUT_PDF}" >> $GITHUB_ENV
 
 # Build the LaTeX document
-latexmk -pdf "${LATEX_FILE_NAME}"
+latexmk "${LATEX_FILE_NAME}"
 
 # Rename the output file with version or branch information
 mv "${FILE_BASENAME}.pdf" "${OUTPUT_PDF}"
